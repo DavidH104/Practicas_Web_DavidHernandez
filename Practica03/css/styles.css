@@ -1,65 +1,92 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #fdfbfb, #ebedee); /* fondo suave */
+    color: #222;
 }
 
+/* Encabezado con degradado */
 header {
-    background-color: #5a2d82;
+    background: linear-gradient(90deg, #ff6f61, #d84315); /* naranja-rojizo vibrante */
     color: white;
     padding: 20px;
     text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
+/* Barra de navegación */
 nav {
-    background-color: #e0e0e0;
-    padding: 10px;
+    background: #4a148c; /* morado intenso */
+    padding: 12px;
     text-align: center;
+    border-bottom: 3px solid #ff6f61;
 }
 
 nav a {
-    margin: 0 10px;
+    margin: 0 15px;
     text-decoration: none;
-    color: #333;
+    color: #fff;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
+nav a:hover {
+    color: #ffeb3b; /* amarillo brillante al pasar */
+}
+
+/* Contenido principal */
 main {
     display: flex;
     gap: 20px;
     padding: 20px;
 }
 
+/* Sección principal */
 section {
     flex: 3;
-    background-color: white;
-    padding: 15px;
-    border-radius: 5px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* Aside con borde llamativo */
 aside {
     flex: 1;
-    background-color: #ffffff;
-    padding: 15px;
-    border-radius: 5px;
-    border-left: 4px solid #5a2d82;
+    background: #fafafa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 6px solid #4a148c;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* Imágenes */
 img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin-top: 10px;
+    margin-top: 15px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
 }
 
+img:hover {
+    transform: scale(1.05); /* efecto zoom */
+}
+
+/* Footer */
 footer {
-    background-color: #333;
+    background: linear-gradient(90deg, #4a148c, #6a1b9a); /* morado degradado */
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 12px;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
 }
 
-
+/* Responsivo */
 @media (max-width: 1024px) {
     section {
         flex: 1; 
@@ -80,6 +107,6 @@ footer {
     }
     
     nav a {
-        margin: 5px 0;
+        margin: 8px 0;
     }
 }
