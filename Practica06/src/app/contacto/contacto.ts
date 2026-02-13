@@ -24,7 +24,6 @@ export class Contacto {
 
   procesarFormulario(form: NgForm) {
 
-    // Marcar todos los campos como tocados
     Object.values(form.controls).forEach(control => {
       control.markAsTouched();
     });

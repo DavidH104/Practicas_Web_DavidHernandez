@@ -4,7 +4,7 @@
   <form #formContacto="ngForm"
         (ngSubmit)="procesarFormulario(formContacto)">
 
-    <!-- NOMBRE -->
+    <!-- ===================== NOMBRE ===================== -->
     <div class="mb-3">
       <label class="form-label">Nombre</label>
       <input
@@ -23,24 +23,25 @@
     <div *ngIf="nombreCtrl.invalid && nombreCtrl.touched" class="text-danger">
 
       <small *ngIf="nombreCtrl.errors?.['required']">
-        El nombre es obligatorio.
+        El nombre es obligatorio
       </small>
 
       <small *ngIf="nombreCtrl.errors?.['minlength']">
-        El nombre debe tener al menos 3 caracteres.
+        El nombre debe tener al menos 3 caracteres
       </small>
 
       <small *ngIf="nombreCtrl.errors?.['maxlength']">
-        El nombre no debe exceder 30 caracteres.
+        El nombre no debe exceder 30 caracteres
       </small>
 
       <small *ngIf="nombreCtrl.errors?.['pattern']">
-        El nombre solo debe contener letras.
+        El nombre solo debe contener letras
       </small>
 
     </div>
 
-    <!-- CORREO -->
+
+    <!-- ===================== CORREO ===================== -->
     <div class="mb-3">
       <label class="form-label">Correo</label>
       <input
@@ -50,33 +51,41 @@
         ngModel
         required
         email
+        minlength="10"
+        maxlength="50"
         #correoCtrl="ngModel">
     </div>
 
     <div *ngIf="correoCtrl.invalid && correoCtrl.touched" class="text-danger">
 
       <small *ngIf="correoCtrl.errors?.['required']">
-        El correo es obligatorio.
+        El correo es obligatorio
       </small>
 
       <small *ngIf="correoCtrl.errors?.['email']">
-        Ingresa un correo válido.
+        El formato del correo no es válido
+      </small>
+
+      <small *ngIf="correoCtrl.errors?.['minlength']">
+        El correo debe tener al menos 8 caracteres
+      </small>
+
+      <small *ngIf="correoCtrl.errors?.['maxlength']">
+        El correo no debe exceder 40 caracteres
       </small>
 
     </div>
 
-    <!-- BOTÓN -->
-    <button
-      class="btn btn-primary"
-      type="submit"
-      [disabled]="formContacto.invalid">
+
+    <button class="btn btn-primary" type="submit">
       Enviar
     </button>
 
   </form>
 </div>
 
-<!-- MODAL -->
+
+<!-- ===================== MODAL ===================== -->
 <div class="modal fade" id="modalResultado" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
