@@ -1,0 +1,95 @@
+<div class="container mt-4">
+  <h2>Contacto</h2>
+
+  <form #formContacto="ngForm"
+        (ngSubmit)="procesarFormulario(formContacto)">
+
+    <!-- NOMBRE -->
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        name="nombre"
+        ngModel
+        required
+        minlength="3"
+        maxlength="30"
+        pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"
+        #nombreCtrl="ngModel"
+        (input)="soloLetras($event)">
+    </div>
+
+    <div *ngIf="nombreCtrl.invalid && nombreCtrl.touched" class="text-danger">
+
+      <small *ngIf="nombreCtrl.errors?.['required']">
+        El nombre es obligatorio.
+      </small>
+
+      <small *ngIf="nombreCtrl.errors?.['minlength']">
+        El nombre debe tener al menos 3 caracteres.
+      </small>
+
+      <small *ngIf="nombreCtrl.errors?.['maxlength']">
+        El nombre no debe exceder 30 caracteres.
+      </small>
+
+      <small *ngIf="nombreCtrl.errors?.['pattern']">
+        El nombre solo debe contener letras.
+      </small>
+
+    </div>
+
+    <!-- CORREO -->
+    <div class="mb-3">
+      <label class="form-label">Correo</label>
+      <input
+        type="email"
+        class="form-control"
+        name="correo"
+        ngModel
+        required
+        email
+        #correoCtrl="ngModel">
+    </div>
+
+    <div *ngIf="correoCtrl.invalid && correoCtrl.touched" class="text-danger">
+
+      <small *ngIf="correoCtrl.errors?.['required']">
+        El correo es obligatorio.
+      </small>
+
+      <small *ngIf="correoCtrl.errors?.['email']">
+        Ingresa un correo válido.
+      </small>
+
+    </div>
+
+    <!-- BOTÓN -->
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="formContacto.invalid">
+      Enviar
+    </button>
+
+  </form>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="modalResultado" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">{{ tituloModal }}</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <p>{{ mensajeModal }}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
