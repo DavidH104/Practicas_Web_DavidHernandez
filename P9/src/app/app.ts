@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { Lista } from './components/lista/lista';
-import { Formulario } from './components/formulario/formulario';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Lista, Formulario],
+  imports: [RouterOutlet],
   template: `
-    <app-formulario></app-formulario>
-    <app-lista></app-lista>
+    <router-outlet></router-outlet>
   `
 })
 export class App {}
