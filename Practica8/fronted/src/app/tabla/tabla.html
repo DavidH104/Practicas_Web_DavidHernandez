@@ -1,0 +1,31 @@
+<button (click)="cargarEventos()">Forzar carga</button>
+<div class="container mt-4">
+  <h2>Cartelera Cultural</h2>
+
+  <table class="table table-bordered table-striped mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>Título</th>
+        <th>Fecha</th>
+        <th>Lugar</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let evento of listaEventos">
+        <td>{{ evento.titulo }}</td>
+        <td>{{ evento.fecha }}</td>
+        <td>{{ evento.lugar }}</td>
+        <td>
+          <span *ngIf="evento.precio > 0">
+            ${{ evento.precio }}
+          </span>
+          <span *ngIf="evento.precio == 0">
+            Gratis
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

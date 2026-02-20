@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <h2>Agregar Alumno</h2>
+
+  <form (ngSubmit)="guardar()">
+    <div class="mb-3">
+      <label>Nombre</label>
+      <input type="text" class="form-control" [(ngModel)]="alumno.nombre" name="nombre">
+    </div>
+
+    <div class="mb-3">
+      <label>Edad</label>
+      <input type="number" class="form-control" [(ngModel)]="alumno.edad" name="edad">
+    </div>
+
+    <div class="mb-3">
+      <label>Carrera</label>
+      <input type="text" class="form-control" [(ngModel)]="alumno.carrera" name="carrera">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+</div>
