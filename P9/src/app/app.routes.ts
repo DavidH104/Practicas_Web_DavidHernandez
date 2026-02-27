@@ -1,16 +1,8 @@
 import { Routes } from '@angular/router';
 import { AlumnosComponent } from './components/alumnos/alumnos';
+import { Formulario } from './components/formulario/formulario';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'alumnos',
-    pathMatch: 'full'
-  },
-  {
-    path: 'alumnos',
-    loadComponent: () =>
-      import('./components/alumnos/alumnos')
-        .then(m => m.AlumnosComponent)
-  }
+  { path: '', component: AlumnosComponent },
+  { path: 'formulario', component: Formulario }
 ];

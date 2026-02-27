@@ -1,17 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { AlumnosService } from '../../services/alumnos';
+import { Router } from '@angular/router';
+import { Alumnos } from '../../services/alumnos';
 
 @Component({
   selector: 'app-formulario',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './formulario.html'
+  templateUrl: './formulario.html',
+  styleUrl: './formulario.css'
 })
-export class FormularioComponent {
+export class Formulario {
 
-  constructor(private alumnoService: AlumnosService) {}
+  constructor(
+    private alumnoService: Alumnos,
+    private router: Router,
+    private cdRef: ChangeDetectorRef
+  ) {}
 
   guardarAlumno(form: NgForm) {
 
@@ -25,11 +31,19 @@ export class FormularioComponent {
 
     this.alumnoService.agregarAlumno(nuevoAlumno).subscribe({
       next: () => {
-        alert("Alumno agregado correctamente");
+
+        alert("Alumno agregado correctamente ✅");
+
         form.reset();
+
+        // 🔥 Forzar detección de cambios
+        this.cdRef.detectChanges();
+
+        // 🔥 Regresar a la tabla
+        this.router.navigate(['/']);
       },
       error: (err) => {
-        console.error("Error:", err);
+        console.error("Error al insertar:", err);
       }
     });
   }

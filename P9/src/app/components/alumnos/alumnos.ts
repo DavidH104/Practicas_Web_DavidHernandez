@@ -1,25 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { NgFor } from '@angular/common';
-import { AlumnosService, Alumno } from '../../services/alumnos';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Alumnos } from '../../services/alumnos';
 
 @Component({
   selector: 'app-alumnos',
   standalone: true,
-  imports: [NgFor],
+  imports: [CommonModule],
   templateUrl: './alumnos.html',
-  styleUrls: ['./alumnos.css']
+  styleUrl: './alumnos.css'
 })
 export class AlumnosComponent implements OnInit {
 
-  listaAlumnos: Alumno[] = [];
+  listaAlumnos: any[] = [];
 
-  constructor(private alumnoService: AlumnosService) {}
+  constructor(
+    private servicio: Alumnos,
+    private cdRef: ChangeDetectorRef
+  ) {}
 
-ngOnInit(): void {
-  this.alumnoService.obtenerAlumnos().subscribe((data) => {
-    console.log("DATOS:", data);
-    this.listaAlumnos = data;
-    console.log("LISTA FINAL:", this.listaAlumnos);
-  });
-}
+  ngOnInit(): void {
+    this.cargarAlumnos();
+  }
+
+  cargarAlumnos() {
+    this.servicio.obtenerAlumnos().subscribe({
+      next: (data: any) => {
+        this.listaAlumnos = data;
+
+        // 🔥 Forzamos detección de cambios
+        this.cdRef.detectChanges();
+      },
+      error: (err) => {
+        console.error("Error al cargar alumnos:", err);
+      }
+    });
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameService } from '../../services/game';
 
@@ -13,18 +13,23 @@ export class Listado implements OnInit {
 
   games: any[] = [];
 
-  constructor(private gameService: GameService) {}
+  constructor(
+    private gameService: GameService,
+    private cdr: ChangeDetectorRef  
+  ) {}
 
   ngOnInit(): void {
-    console.log("Listado cargado");   // 👈 agrega esto
+    console.log("Listado cargado");
     this.cargarJuegos();
   }
 
   cargarJuegos() {
     this.gameService.getGames().subscribe({
       next: (data: any[]) => {
-        console.log("DATA:", data);   // 👈 agrega esto
+        console.log("DATA:", data);
         this.games = data;
+
+        this.cdr.detectChanges();
       },
       error: (error: any) => {
         console.error("ERROR:", error);

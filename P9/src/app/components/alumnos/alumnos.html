@@ -1,7 +1,20 @@
-<h2>PRUEBA</h2>
+<div class="container mt-4">
+  <h2>Lista de Alumnos</h2>
 
-<p>Total: {{ listaAlumnos.length }}</p>
-
-<div *ngFor="let alumno of listaAlumnos">
-  {{ alumno.nombre }} - {{ alumno.edad }} - {{ alumno.carrera }}
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Carrera</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alumno of listaAlumnos">
+        <td>{{ alumno.nombre }}</td>
+        <td>{{ alumno.edad }}</td>
+        <td>{{ alumno.carrera }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

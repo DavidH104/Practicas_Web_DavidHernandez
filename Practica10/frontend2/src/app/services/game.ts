@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class GameService {
 
-  private apiUrl = 'http://localhost:5000/games';
+  private apiUrl = 'http://127.0.0.1:5000/games';
 
   constructor(private http: HttpClient) {}
 
