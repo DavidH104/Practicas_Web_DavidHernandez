@@ -1,8 +1,16 @@
 import { Routes } from '@angular/router';
-import { Lista } from './components/lista/lista';
-import { Formulario } from './components/formulario/formulario';
+import { AlumnosComponent } from './components/alumnos/alumnos';
 
 export const routes: Routes = [
-  { path: '', component: Lista },
-  { path: 'alumno', component: Formulario }
+  {
+    path: '',
+    redirectTo: 'alumnos',
+    pathMatch: 'full'
+  },
+  {
+    path: 'alumnos',
+    loadComponent: () =>
+      import('./components/alumnos/alumnos')
+        .then(m => m.AlumnosComponent)
+  }
 ];

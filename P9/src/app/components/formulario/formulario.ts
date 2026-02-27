@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { AlumnoService } from '../../services/alumno';
+import { FormsModule, NgForm } from '@angular/forms';
+import { AlumnosService } from '../../services/alumnos';
 
 @Component({
   selector: 'app-formulario',
@@ -9,20 +9,28 @@ import { AlumnoService } from '../../services/alumno';
   imports: [CommonModule, FormsModule],
   templateUrl: './formulario.html'
 })
-export class Formulario {
+export class FormularioComponent {
 
-  alumno = {
-    nombre: '',
-    edad: 0,
-    carrera: ''
-  };
+  constructor(private alumnoService: AlumnosService) {}
 
-  constructor(private servicio: AlumnoService) {}
+  guardarAlumno(form: NgForm) {
 
-  guardar() {
-    this.servicio.agregarAlumno(this.alumno).subscribe(() => {
-      alert('Alumno guardado');
-      this.alumno = { nombre: '', edad: 0, carrera: '' };
+    if (form.invalid) return;
+
+    const nuevoAlumno = {
+      nombre: form.value.nombre,
+      edad: form.value.edad,
+      carrera: form.value.carrera
+    };
+
+    this.alumnoService.agregarAlumno(nuevoAlumno).subscribe({
+      next: () => {
+        alert("Alumno agregado correctamente");
+        form.reset();
+      },
+      error: (err) => {
+        console.error("Error:", err);
+      }
     });
   }
 }
