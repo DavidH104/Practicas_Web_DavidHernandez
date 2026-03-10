@@ -1,0 +1,51 @@
+<div class="container mt-4">
+
+<h2>Eliminar Videojuegos</h2>
+
+<table class="table">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>Id</th>
+<th>Nombre</th>
+<th>Genero</th>
+<th>Precio</th>
+<th>Acción</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr *ngFor="let game of games">
+
+<td>{{game._id}}</td>
+
+<td>{{game.nombre}}</td>
+
+<td>{{game.genero}}</td>
+
+<td>${{game.precio}}</td>
+
+<td>
+
+<button
+class="btn btn-danger btn-sm"
+(click)="deleteGame(game._id)">
+
+Eliminar
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>

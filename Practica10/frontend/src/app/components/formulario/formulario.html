@@ -1,0 +1,70 @@
+<div class="container mt-4">
+
+<h2>Agregar Videojuego</h2>
+
+<form (ngSubmit)="onSubmit()" #gameForm="ngForm">
+
+<div class="mb-3">
+
+<label>Nombre</label>
+
+<input
+type="text"
+class="form-control"
+name="nombre"
+[(ngModel)]="game.nombre"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Genero</label>
+
+<input
+type="text"
+class="form-control"
+name="genero"
+[(ngModel)]="game.genero"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Precio</label>
+
+<input
+type="number"
+class="form-control"
+name="precio"
+[(ngModel)]="game.precio"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Imagen URL</label>
+
+<input
+type="text"
+class="form-control"
+name="imagenUrl"
+[(ngModel)]="game.imagenUrl"
+required>
+
+</div>
+
+<button
+class="btn btn-primary"
+type="submit"
+[disabled]="gameForm.invalid">
+
+Guardar
+
+</button>
+
+</form>
+
+</div>
